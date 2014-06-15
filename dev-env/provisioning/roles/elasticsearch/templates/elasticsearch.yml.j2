@@ -1,0 +1,59 @@
+
+path.data: /srv/elasticsearch/data
+
+path.logs: /srv/elasticsearch/logs
+
+# Name the Cluster
+cluster.name: {{ elasticsearch_cluster_name }}
+
+# Node Name
+node.name: {{ ansible_eth0.ipv4.address }}
+
+# Force all memory to be locked, forcing the JVM to never swap
+bootstrap.mlockall: true
+
+# Set index refresh interval
+index.refresh_interval: 10
+
+index.fielddata.cache: node
+indices.fielddata.cache.size: 10%
+
+# Prevents split brain, as cluster expands
+# this value needs to be updated to N/2+1,
+# where N is the number of master nodes in the cluster.
+discovery.zen.minimum_master_nodes: 1
+
+# Bulk pool
+threadpool.bulk.type: fixed
+threadpool.bulk.size: 60
+threadpool.bulk.queue_size: 300
+
+# Setting ping timeout  (default is 5)
+index.client.transport.ping_timeout : 20
+
+# Configure ES not to automatically create indexes
+# (e.g. when indexing content of a non existing index)
+action.auto_create_index: false
+
+# Prevent ES from auto creating a mapping file
+index.mapper.dynamic: false
+
+# Slow logs
+index.search.slowlog.threshold.query.warn: 10s
+index.search.slowlog.threshold.query.info: 5s
+index.search.slowlog.threshold.query.debug: 2s
+index.search.slowlog.threshold.query.trace: 500ms
+
+index.search.slowlog.threshold.fetch.warn: 1s
+index.search.slowlog.threshold.fetch.info: 800ms
+index.search.slowlog.threshold.fetch.debug: 500ms
+index.search.slowlog.threshold.fetch.trace: 200ms
+
+# GC Logs
+monitor.jvm.gc.young.warn: 1000ms
+monitor.jvm.gc.young.info: 700ms
+monitor.jvm.gc.young.debug: 400ms
+
+monitor.jvm.gc.old.warn: 10s
+monitor.jvm.gc.old.info: 5s
+monitor.jvm.gc.old.debug: 2s
