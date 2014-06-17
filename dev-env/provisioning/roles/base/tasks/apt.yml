@@ -45,4 +45,15 @@
         =92oX
         -----END PGP PUBLIC KEY BLOCK-----
 
+- name: Install datastax APT repository
+  notify: update apt
+  copy:
+    dest: /etc/apt/sources.list.d/datastax.list
+    mode: 0644
+    content: "deb http://mark.l.reddy_gmail.com:zmn8NaMQ31fW76V@debian.datastax.com/enterprise stable main"
+
+- name: Install datastax APT GPG key
+  notify: update apt
+  apt_key: id=B999A372 url=https://debian.datastax.com/debian/repo_key
+
 - meta: flush_handlers
