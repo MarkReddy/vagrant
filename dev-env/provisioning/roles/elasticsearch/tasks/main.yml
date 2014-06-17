@@ -25,5 +25,8 @@
 
 - meta: flush_handlers
 
+- name: Start service
+  service: name=elasticsearch state=started
+
 - name: Wait for 9300 to respond
   wait_for: port=9300
