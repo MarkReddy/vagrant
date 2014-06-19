@@ -17,3 +17,9 @@
   serial: 1
   roles:
     - { role: cassandra, tags: [cassandra] }
+
+- name: Redis
+  hosts: redis
+  serial: 1
+  roles:
+    - { role: redis, tags: [redis] }
