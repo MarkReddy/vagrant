@@ -1,0 +1,10 @@
+---
+- name: Kernel Tweaks
+  notify: update dev-env sysctl
+  copy:
+    dest: /etc/sysctl.d/60-dev-env.conf
+    content: |
+      # Increase number of file descriptors available
+      vm.max_map_count=131072
+      # Set ptrace to be compatible with java tooling : http://bugs.java.com/bugdatabase/view_bug.do?bug_id=7050524
+      kernel.yama.ptrace_scope=0

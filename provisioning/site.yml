@@ -1,0 +1,25 @@
+---
+
+- name: Base setup
+  hosts: all
+  serial: 2
+  roles:
+    - base
+
+- name: Elasticsearch
+  hosts: elasticsearch
+  serial: 1
+  roles:
+    - { role: elasticsearch, tags: [elasticsearch] }
+
+- name: Cassandra
+  hosts: cassandra
+  serial: 1
+  roles:
+    - { role: cassandra, tags: [cassandra] }
+
+- name: Redis
+  hosts: redis
+  serial: 1
+  roles:
+    - { role: redis, tags: [redis] }

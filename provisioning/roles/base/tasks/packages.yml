@@ -1,0 +1,14 @@
+---
+# Packages common across our machines.
+- name: Installing base packages
+  apt: pkg="{{ item }}" update_cache=yes cache_valid_time=3600
+  with_items:
+    - ntp
+    - unzip
+    - htop
+    - sysstat
+    - python-requests
+    - libwww-perl
+    - cryptsetup
+    - pwgen
+    - monit
