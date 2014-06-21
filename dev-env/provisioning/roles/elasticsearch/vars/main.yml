@@ -1,2 +1,0 @@
-elasticsearch_heap_allocation: 1G
-elasticsearch_cluster_name: test_cluster

@@ -1,4 +1,0 @@
----
-# Connection strings for the various servers.
- cassandra_seeds: '{% set j = joiner(",") %}{% for host in groups["cassandra"] %}{{ j() }}{{ host }}{% endfor %}'
- elasticsearch_connect: '{% set j = joiner(",") %}{% for host in groups["elasticsearch"] %}{{ j() }}{{ host }}:9300{% endfor %}'

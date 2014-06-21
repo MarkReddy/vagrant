@@ -1,4 +1,0 @@
----
-
--  name: restart dse
-   service: name=dse state=restarted
