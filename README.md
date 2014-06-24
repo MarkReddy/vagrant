@@ -6,5 +6,5 @@ An example project that boots a VM using Vagrant and provisions applications wit
 Applications provisioned:
 
 - Elasticsearch
-- Cassandra
+- Cassandra (DataStax Enterprise) 
 - Redis
