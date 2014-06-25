@@ -21,7 +21,7 @@ indices.fielddata.cache.size: 10%
 # Prevents split brain, as cluster expands
 # this value needs to be updated to N/2+1,
 # where N is the number of master nodes in the cluster.
-discovery.zen.minimum_master_nodes: 1
+discovery.zen.minimum_master_nodes: {{ elasticsearch_minimum_master_nodes }}
 
 # Bulk pool
 threadpool.bulk.type: fixed
