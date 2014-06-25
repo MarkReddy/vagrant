@@ -1,0 +1,12 @@
+---
+- name: Configure monit http server
+  notify: restart monit
+  copy:
+    dest: /etc/monit/conf.d/monit
+    content: |
+      set httpd port 2812
+        and use address localhost
+        allow localhost
+
+- name: Start monit
+  service: state=started name=monit

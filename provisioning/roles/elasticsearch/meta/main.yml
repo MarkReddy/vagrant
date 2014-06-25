@@ -1,2 +1,4 @@
 ---
 dependencies:
+   - client_connect
+   - common

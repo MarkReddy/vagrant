@@ -23,10 +23,24 @@
   notify: restart elasticsearch
   template: src=logging.yml.j2 dest=/etc/elasticsearch/logging.yml owner=elasticsearch group=elasticsearch mode=0644
 
+- name: Create monit config
+  notify: restart monit
+  copy:
+    dest: /etc/monit/conf.d/elasticsearch
+    content: |
+      check process elasticsearch with pidfile /var/run/elasticsearch.pid
+        start program = "/etc/init.d/elasticsearch start"
+        stop program = "/etc/init.d/elasticsearch stop"
+        if failed port 9300 then restart
+
+- name: Installing Elasticsearch Head
+  notify: restart elasticsearch
+  command: creates=/usr/share/elasticsearch/plugins/head /usr/share/elasticsearch/bin/plugin -install mobz/elasticsearch-head
+
 - meta: flush_handlers
 
 - name: Start service
-  service: name=elasticsearch state=started
+  monit: state=started name=elasticsearch
 
 - name: Wait for 9300 to respond
   wait_for: port=9300

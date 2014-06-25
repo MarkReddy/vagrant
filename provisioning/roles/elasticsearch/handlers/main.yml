@@ -1,4 +1,4 @@
 ---
 
--  name: restart elasticsearch
-   service: name=elasticsearch state=restarted
+- name: restart elasticsearch
+  command: monit restart elasticsearch

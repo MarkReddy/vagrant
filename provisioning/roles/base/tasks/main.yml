@@ -6,3 +6,4 @@
 - include: ulimit.yml tags=base_ulimit
 - include: sysctl.yml tags=base_sysctl
 - include: jna.yml tags=base_jna
+- include: monit.yml tags=base_monit
