@@ -1,3 +1,5 @@
 elasticsearch_heap_allocation: 1G
 elasticsearch_cluster_name: test_cluster
 elasticsearch_minimum_master_nodes: 1
+elasticsearch_path_data: /srv/elasticsearch/data
+elasticsearch_path_logs: /srv/elasticsearch/logs

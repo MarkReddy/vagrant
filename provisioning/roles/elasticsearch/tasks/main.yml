@@ -2,22 +2,18 @@
 # This is used for both the main elasticsearch install, and the local elasticsearch used by Marvel.
 
 - name:
-  apt: pkg=elasticsearch=0.90.12 update_cache=yes cache_valid_time=3600
-
-- name: Installing Elasticsearch Head
-  notify: restart elasticsearch
-  command: creates=/usr/share/elasticsearch/plugins/head /usr/share/elasticsearch/bin/plugin -install mobz/elasticsearch-head
+  apt: pkg=elasticsearch update_cache=yes cache_valid_time=3600
 
 - name: Configuring directories
   file: path=/srv/elasticsearch state=directory
 
+- name: Configuring Elasticsearch defaults
+  notify: restart elasticsearch
+  template: src=elasticsearch.j2 dest=/etc/default/elasticsearch owner=elasticsearch group=elasticsearch mode=0644
+
 - name: Configuring Elasticsearch node
   notify: restart elasticsearch
   template: src=elasticsearch.yml.j2 dest=/etc/elasticsearch/elasticsearch.yml owner=elasticsearch group=elasticsearch mode=0644
-
-- name: Configuring Elasticsearch env
-  notify: restart elasticsearch
-  template: src=elasticsearch.in.sh.j2 dest=/usr/share/elasticsearch/bin/elasticsearch.in.sh owner=elasticsearch group=elasticsearch mode=0644
 
 - name: Configuring Elasticsearch logging
   notify: restart elasticsearch

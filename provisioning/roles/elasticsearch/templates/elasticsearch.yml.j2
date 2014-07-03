@@ -1,8 +1,3 @@
-
-path.data: /srv/elasticsearch/data
-
-path.logs: /srv/elasticsearch/logs
-
 # Name the Cluster
 cluster.name: {{ elasticsearch_cluster_name }}
 
@@ -22,11 +17,6 @@ indices.fielddata.cache.size: 10%
 # this value needs to be updated to N/2+1,
 # where N is the number of master nodes in the cluster.
 discovery.zen.minimum_master_nodes: {{ elasticsearch_minimum_master_nodes }}
-
-# Bulk pool
-threadpool.bulk.type: fixed
-threadpool.bulk.size: 60
-threadpool.bulk.queue_size: 300
 
 # Setting ping timeout  (default is 5)
 index.client.transport.ping_timeout : 20
