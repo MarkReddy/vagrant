@@ -21,11 +21,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     v.customize ["modifyvm", :id, "--memory", "3072"]
   end
 
-  # Create a public network, which generally matched to bridged network.
-  # Bridged networks make the machine appear as another physical device on
-  # your network.
-  # config.vm.network "public_network"
-
   config.vm.provision "ansible" do |ansible|
     ansible.sudo = true
     ansible.playbook = "provisioning/site.yml"
