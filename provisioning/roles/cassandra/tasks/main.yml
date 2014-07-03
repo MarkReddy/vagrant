@@ -1,22 +1,6 @@
 ---
 - name: Install packages
-  apt: pkg="{{ item }}" update_cache=yes cache_valid_time=3600
-  with_items:
-    - dse-full=3.1.4-1
-    - dse=3.1.4-1
-    - dse-demos=3.1.4-1
-    - dse-hive=3.1.4-1
-    - dse-libcassandra=3.1.4-1
-    - dse-libhadoop=3.1.4-1
-    - dse-libhadoop-native=3.1.4-1
-    - dse-libhive=3.1.4-1
-    - dse-libpig=3.1.4-1
-    - dse-pig=3.1.4-1
-    - dse-liblog4j=3.1.4-1
-    - dse-libsolr=3.1.4-1
-    - dse-libsqoop=3.1.4-1
-    - dse-libtomcat=3.1.4-1
-    - dse-libmahout=3.1.4-1
+  apt: pkg=dsc20 update_cache=yes cache_valid_time=3600
 
 - name: Create directories
   file: path="{{ item }}" state=directory
@@ -27,21 +11,17 @@
     - /srv/cassandra/saved_caches
 
 - name: Configuring properties
-  notify: restart dse
-  template: src=cassandra.yaml.j2 dest=/etc/dse/cassandra/cassandra.yaml owner=cassandra group=cassandra mode=0644
+  notify: restart cassandra
+  template: src=cassandra.yaml.j2 dest=/etc/cassandra/cassandra.yaml owner=cassandra group=cassandra mode=0644
 
 - name: Configuring env properties
-  notify: restart dse
-  template: src=cassandra-env.sh.j2 dest=/etc/dse/cassandra/cassandra-env.sh owner=cassandra group=cassandra mode=0644
-
-- name: Configuring dse properties
-  notify: restart dse
-  template: src=dse.yaml.j2 dest=/etc/dse/dse.yaml owner=cassandra group=cassandra mode=0644
+  notify: restart cassandra
+  template: src=cassandra-env.sh.j2 dest=/etc/cassandra/cassandra-env.sh owner=cassandra group=cassandra mode=0644
 
 - meta: flush_handlers
 
 - name: Start service
-  service: name=dse state=started
+  service: name=cassandra state=started
 
 - name: Wait for 9160 to respond
   wait_for: port=9160
