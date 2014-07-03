@@ -1,7 +1,6 @@
 ---
 - include: apt.yml tags=base_apt
 - include: packages.yml tags=base_packages
-# Anything involving secrets should go after this point.
 - include: java.yml tags=base_java
 - include: ulimit.yml tags=base_ulimit
 - include: sysctl.yml tags=base_sysctl
