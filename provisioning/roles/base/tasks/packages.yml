@@ -9,6 +9,4 @@
     - sysstat
     - python-requests
     - libwww-perl
-    - cryptsetup
-    - pwgen
     - monit

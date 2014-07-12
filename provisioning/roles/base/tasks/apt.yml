@@ -1,5 +1,5 @@
 ---
-# Basic apt repository setup.
+# Add additional repos.
 
 - name: Install Elasticsearch APT repository
   notify: update apt

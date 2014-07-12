@@ -1,13 +1,13 @@
 ---
 
-# Allow our apps to mlock themselves into memory, and not be paged out.
+# Prevent paging.
 - name: Unlimited memlock default
   lineinfile : line="* - memlock unlimited" dest=/etc/security/limits.conf
 
 - name: Unlimited memlock root
   lineinfile : line="root - memlock unlimited" dest=/etc/security/limits.conf
 
-# Bump the fd limit, 1k is a bit small
+# Increase the number of FDs, 1024 is silly.
 - name: 32k open files default
   lineinfile : line="* - nofile 32768" dest=/etc/security/limits.conf
 

@@ -1,3 +1,3 @@
 ---
-- name: update dev-env sysctl
+- name: update sysctl
   command: sysctl -p /etc/sysctl.d/60-dev-env.conf

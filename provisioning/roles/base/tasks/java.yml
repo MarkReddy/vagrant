@@ -1,5 +1,5 @@
 ---
-# Install Oracle Java7
+# Install Oracle Java7.
 
 - name: Add JRE ppa
   apt_repository: repo=ppa:webupd8team/java state=present

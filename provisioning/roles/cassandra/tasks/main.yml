@@ -18,6 +18,16 @@
   notify: restart cassandra
   template: src=cassandra-env.sh.j2 dest=/etc/cassandra/cassandra-env.sh owner=cassandra group=cassandra mode=0644
 
+- name: Create monit config
+  notify: restart monit
+  copy:
+    dest: /etc/monit/conf.d/cassandra
+    content: |
+      check process cassandra with pidfile /var/run/cassandra/cassandra.pid
+        start program = "/etc/init.d/cassandra start"
+        stop program = "/etc/init.d/cassandra stop"
+        if failed port 9160 then restart
+
 - meta: flush_handlers
 
 - name: Start service
